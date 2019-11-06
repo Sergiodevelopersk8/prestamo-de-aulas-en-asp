@@ -1,0 +1,440 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A92E3C7-C337-4A0F-B238-F197A920107F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>logginweb</RootNamespace>
+    <AssemblyName>logginweb</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarcodeStandard, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BarcodeLib.2.2.1\lib\netstandard2.0\BarcodeStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Conexionsql">
+      <HintPath>..\ModeloSql\bin\Debug\Conexionsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ModeloSql">
+      <HintPath>..\ModeloSql\bin\Debug\ModeloSql.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.5.1\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization.Design" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.DynamicData.Design" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Entity.Design" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Web.RegularExpressions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Zen.Barcode.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.3.1.10729.1\lib\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Design, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Web, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Zen.Barcode.Web.Mvc, Version=3.1.0.0, Culture=neutral, PublicKeyToken=b5ae55aa76d2d9de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zen.Barcode.Rendering.Framework.Web.3.1.10729.1\lib\Zen.Barcode.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Alumnoform.aspx" />
+    <Content Include="Alumnolaboform.aspx" />
+    <Content Include="Asistenciaprof.aspx" />
+    <Content Include="Concentrados.aspx" />
+    <Content Include="consultaalta.aspx" />
+    <Content Include="consultas2.aspx" />
+    <Content Include="Imagenes\database %281%29.png" />
+    <Content Include="Imagenes\database.png" />
+    <Content Include="Registrar.aspx" />
+    <Content Include="ConsultasForm.aspx" />
+    <Content Include="CuatriForm.aspx" />
+    <Content Include="Cuatriregisform.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="HorasForm.aspx" />
+    <Content Include="Imagenes\1.gif" />
+    <Content Include="Imagenes\2.gif" />
+    <Content Include="Imagenes\button_blank_blue_14984.png" />
+    <Content Include="Imagenes\circuloazul.ico" />
+    <Content Include="jsq\jquery-3.3.1.slim.js" />
+    <Content Include="jsq\jquery.bootpag.min.js" />
+    <Content Include="loginweb.aspx" />
+    <Content Include="Materiasform.aspx" />
+    <Content Include="menulabora.aspx" />
+    <Content Include="parabotones\11agosto.css" />
+    <Content Include="parabotones\alumlabohoja.css" />
+    <Content Include="parabotones\Alumnosfc.css" />
+    <Content Include="parabotones\aprogramaricon %281%29\demo-files\demo.css" />
+    <Content Include="parabotones\aprogramaricon %281%29\demo-files\demo.js" />
+    <Content Include="parabotones\aprogramaricon %281%29\demo.html" />
+    <Content Include="parabotones\aprogramaricon %281%29\fonts\aprogramaricon.svg" />
+    <Content Include="parabotones\aprogramaricon %281%29\fonts\style.css" />
+    <Content Include="parabotones\aprogramaricon %281%29\Read Me.txt" />
+    <Content Include="parabotones\borde.css" />
+    <Content Include="parabotones\borde1.css" />
+    <Content Include="parabotones\borde2.css" />
+    <Content Include="parabotones\coloravvv.css" />
+    <Content Include="parabotones\commprass.css" />
+    <Content Include="parabotones\consultashoja.css" />
+    <Content Include="parabotones\cuatrihoja.css" />
+    <Content Include="parabotones\estilob.css" />
+    <Content Include="parabotones\estilocuatricss.css" />
+    <Content Include="parabotones\estilopavdos.css" />
+    <Content Include="parabotones\fonts\aprogramaricon.svg" />
+    <Content Include="parabotones\fonts\style.css" />
+    <Content Include="parabotones\gridhoja.css" />
+    <Content Include="parabotones\hojaprofes.css" />
+    <Content Include="parabotones\lugarrs.css" />
+    <Content Include="parabotones\paralog.css" />
+    <Content Include="parabotones\Preciosz.css" />
+    <Content Include="parabotones\redess.css" />
+    <Content Include="parabotones\Regishoja.css" />
+    <Content Include="parabotones\rueba.js" />
+    <Content Include="parabotones\sobrasshtml\avionsitog.jpg" />
+    <Content Include="parabotones\sobrasshtml\bbit.jpg" />
+    <Content Include="parabotones\sobrasshtml\bitbit.jpg" />
+    <Content Include="parabotones\sobrasshtml\bitcoins.jpeg" />
+    <Content Include="parabotones\sobrasshtml\bitt.jpg" />
+    <Content Include="parabotones\sobrasshtml\bittss.jpg" />
+    <Content Include="parabotones\sobrasshtml\bitw.jpg" />
+    <Content Include="parabotones\sobrasshtml\cloud.jpg" />
+    <Content Include="parabotones\sobrasshtml\cloudw.jpg" />
+    <Content Include="parabotones\sobrasshtml\coprawall.jpg" />
+    <Content Include="parabotones\sobrasshtml\descarga.jpg" />
+    <Content Include="parabotones\sobrasshtml\dinerro.jpg" />
+    <Content Include="parabotones\sobrasshtml\dollar.jpg" />
+    <Content Include="parabotones\estiloprofe.css" />
+    <Content Include="parabotones\sobrasshtml\globo.jpg" />
+    <Content Include="parabotones\sobrasshtml\hermes.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\alemania.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\alemania1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\alemania2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\alemania3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\alemania4.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\BRAZIL.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\brazil1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\brazil2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\brazil3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\china.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\china1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\china2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\china3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\china4.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\gracia.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\grecia1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\grecia2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\grecia3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\grecia4.jpeg" />
+    <Content Include="parabotones\sobrasshtml\lugg\japon.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\japon1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\japon2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\japon3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\japon4.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\korea.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\korea1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\korea2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\korea3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\korea4.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\loscabosmexico.jpeg" />
+    <Content Include="parabotones\sobrasshtml\lugg\Mexico.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\mexico1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\mexico2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\mexico3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\mexico4.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\newyork.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\newyork1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\newyork2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\newyork3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\piramide.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\rusia.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\rusia1.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\rusia2.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\rusia3.jpg" />
+    <Content Include="parabotones\sobrasshtml\lugg\rusia4.jpg" />
+    <Content Include="parabotones\sobrasshtml\maleta.jpg" />
+    <Content Include="parabotones\sobrasshtml\maleta2.jpg" />
+    <Content Include="parabotones\sobrasshtml\mundo.jpg" />
+    <Content Include="parabotones\sobrasshtml\nubes.jpg" />
+    <Content Include="parabotones\sobrasshtml\playstation.jpeg" />
+    <Content Include="parabotones\sobrasshtml\sharingan.png" />
+    <Content Include="parabotones\sobrasshtml\Sony-PlayStation.jpg" />
+    <Content Include="parabotones\sobrasshtml\spidy.jpg" />
+    <Content Include="parabotones\sobrasshtml\ww3.gif" />
+    <Content Include="parabotones\sobrasshtml\ww4.jpg" />
+    <Content Include="parabotones\sobrasshtml\wwblue.jpg" />
+    <Content Include="parabotones\Vuelooss.css" />
+    <Content Include="Profesform.aspx" />
+    <Content Include="Registrousuform.aspx" />
+    <Content Include="Script_Jquery\jquery-1.8.2.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\changelog.txt" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\bg.gif" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\chili-1.7.pack.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\formtip.html" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\image.png" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\index.html" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\karte.png" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\screen.css" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\shadow.png" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\shadow2-reverse.png" />
+    <Content Include="Script_Jquery\jquery-tooltip\demo\shadow2.png" />
+    <Content Include="Script_Jquery\jquery-tooltip\jquery.tooltip.css" />
+    <Content Include="Script_Jquery\jquery-tooltip\jquery.tooltip.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\jquery.tooltip.min.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\jquery.tooltip.pack.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\lib\jquery.bgiframe.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\lib\jquery.delegate.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\lib\jquery.dimensions.js" />
+    <Content Include="Script_Jquery\jquery-tooltip\lib\jquery.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alumnoform.aspx.cs">
+      <DependentUpon>Alumnoform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alumnoform.aspx.designer.cs">
+      <DependentUpon>Alumnoform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alumnolaboform.aspx.cs">
+      <DependentUpon>Alumnolaboform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alumnolaboform.aspx.designer.cs">
+      <DependentUpon>Alumnolaboform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asistenciaprof.aspx.cs">
+      <DependentUpon>Asistenciaprof.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asistenciaprof.aspx.designer.cs">
+      <DependentUpon>Asistenciaprof.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Concentrados.aspx.cs">
+      <DependentUpon>Concentrados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Concentrados.aspx.designer.cs">
+      <DependentUpon>Concentrados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="consultaalta.aspx.cs">
+      <DependentUpon>consultaalta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="consultaalta.aspx.designer.cs">
+      <DependentUpon>consultaalta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="consultas2.aspx.cs">
+      <DependentUpon>consultas2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="consultas2.aspx.designer.cs">
+      <DependentUpon>consultas2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar.aspx.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registrar.aspx.designer.cs">
+      <DependentUpon>Registrar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultasForm.aspx.cs">
+      <DependentUpon>ConsultasForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConsultasForm.aspx.designer.cs">
+      <DependentUpon>ConsultasForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CuatriForm.aspx.cs">
+      <DependentUpon>CuatriForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CuatriForm.aspx.designer.cs">
+      <DependentUpon>CuatriForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Cuatriregisform.aspx.cs">
+      <DependentUpon>Cuatriregisform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cuatriregisform.aspx.designer.cs">
+      <DependentUpon>Cuatriregisform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HorasForm.aspx.cs">
+      <DependentUpon>HorasForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HorasForm.aspx.designer.cs">
+      <DependentUpon>HorasForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="loginweb.aspx.cs">
+      <DependentUpon>loginweb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="loginweb.aspx.designer.cs">
+      <DependentUpon>loginweb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Materiasform.aspx.cs">
+      <DependentUpon>Materiasform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Materiasform.aspx.designer.cs">
+      <DependentUpon>Materiasform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="menulabora.aspx.cs">
+      <DependentUpon>menulabora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="menulabora.aspx.designer.cs">
+      <DependentUpon>menulabora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profesform.aspx.cs">
+      <DependentUpon>Profesform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profesform.aspx.designer.cs">
+      <DependentUpon>Profesform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registrousuform.aspx.cs">
+      <DependentUpon>Registrousuform.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registrousuform.aspx.designer.cs">
+      <DependentUpon>Registrousuform.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="parabotones\aprogramaricon %281%29\fonts\aprogramaricon.eot" />
+    <Content Include="parabotones\aprogramaricon %281%29\fonts\aprogramaricon.ttf" />
+    <Content Include="parabotones\aprogramaricon %281%29\fonts\aprogramaricon.woff" />
+    <Content Include="parabotones\aprogramaricon %281%29\selection.json" />
+    <Content Include="parabotones\fonts\aprogramaricon.eot" />
+    <Content Include="parabotones\fonts\aprogramaricon.ttf" />
+    <Content Include="parabotones\fonts\aprogramaricon.woff" />
+    <Content Include="Script_Jquery\jquery-tooltip\todo" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49698</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8985/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

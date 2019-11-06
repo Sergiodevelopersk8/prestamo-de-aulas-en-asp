@@ -1,0 +1,6 @@
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\bin\Debug\Conexionsql.dll
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\bin\Debug\Conexionsql.pdb
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\obj\Debug\Conexionsql.csprojAssemblyReference.cache
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\obj\Debug\Conexionsql.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\obj\Debug\Conexionsql.dll
+C:\Users\user\source\repos\Laboratoriosasp\Conexionsql\obj\Debug\Conexionsql.pdb

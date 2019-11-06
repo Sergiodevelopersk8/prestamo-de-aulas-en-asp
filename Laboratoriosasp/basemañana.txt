@@ -1,0 +1,622 @@
+create database agreglabo
+use agreglabo;
+
+--bien
+create table Usuarios(
+ id_Usuarios int identity primary key,
+ nombre_usu varchar(100),
+ contrasena varchar(100),
+ unique(nombre_usu)
+);
+
+insert into Usuarios values('sergio','skate')
+select*from Usuarios
+--bien
+create table cuatrimestre(
+IdCuatrimestre int primary key identity,
+Periodo varchar(100) not null,
+fecha_inicio date not null,
+fecha_fin date not null,
+constraint CHK_fechas check(fecha_inicio != fecha_fin),
+);
+select*from cuatrimestre
+insert into cuatrimestre values('Segundo','2019-01-07','2019-04-12')
+
+--bien
+create table Grupo(
+IdGrupo int primary key identity,
+Grado varchar(12),
+Grupo varchar(3),
+Turno Varchar (11),
+Especialidad varchar (30),
+IdCuatrimestre int,
+unique(Grado, Grupo,Turno,especialidad,IdCuatrimestre),
+constraint CHK_Turnos check(Turno='Matutino' or Turno='Vespertino'),
+constraint CHK_Especialidades check(Especialidad='Sistemas Informaticos' or Especialidad='Redes y Telecomunicaciones'),
+foreign key (IdCuatrimestre)references cuatrimestre (IdCuatrimestre) on delete cascade,
+);
+
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','A','Matutino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','B','Matutino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','C','Vespertino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','D','Vespertino','Sistemas Informaticos',1);
+
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','E','Matutino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','F','Vespertino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','G','Matutino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','H','Vespertino','Redes y Telecomunicaciones',1);
+
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','Primero''I','Vespertino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','J','Matutino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','K','Vespertino','Redes y Telecomunicaciones',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','L','Matutino','Redes y Telecomunicaciones',1);
+
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','M','Vespertino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','N','Matutino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','O','Vespertino','Sistemas Informaticos',1);
+INSERT INTO Grupo (Grado,Grupo,Turno,especialidad,IdCuatrimestre)values('Primero','P','Matutino','Sistemas Informaticos',1);
+select * from Grupo;
+--bien
+
+
+create table Laboratorios_Edificios (
+IdLaboratorio int primary key identity,
+Aula varchar (8),
+Edificio varchar (5),
+constraint CHK_Edificios check(Edificio='D-5' or Edificio='K-5'),
+unique (Aula,Edificio)
+); 
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('200','D-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('201','D-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('202','D-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('203','D-5');
+
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('204','K-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('205','K-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('206','K-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('207','K-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('208','K-5');
+INSERT INTO Laboratorios_Edificios(Aula,Edificio)VALUES('209','K-5');
+--select Aula from Laboratorios_Edificios
+select*from Laboratorios_Edificios
+--bien
+
+Create table Dias(
+IdDia int primary key identity,
+Dia Varchar (10) unique,
+constraint chekDia check(Dia='Lunes' or Dia='Martes' or Dia='Miércoles' or Dia='Jueves' or Dia='Viernes' or Dia='Sábado' or Dia='Domingo')
+);
+
+insert into Dias values ('lunes');
+insert into Dias values ('Martes');
+insert into Dias values ('Miércoles');
+insert into Dias values ('Jueves');
+insert into Dias values ('Viernes');
+ select*from Dias
+
+ --bien
+
+--create table horarioLibress (
+--idhorarioLibre int primary key identity,
+--horariolib varchar (100),
+--IdLaboratorio int,
+--foreign key (IdLaboratorio)references Laboratorios_Edificios (IdLaboratorio),
+--); 
+
+
+--create table pidiendoaula (
+--Idpidiendoaula int primary key identity,
+--IdLaboratorio int ,
+--id_alumno int,
+--foreign key (IdLaboratorio)references Laboratorios_Edificios (IdLaboratorio),
+--foreign key (id_alumno)references Alumno (id_alumno),
+--); 
+
+--insert into pidiendoaula values(1,1)
+--select*from pidiendoaula
+
+create table Materias (
+IdMateria int primary key identity,
+Descripcion varchar (100) unique,
+);
+insert into Materias values ('Programacion');
+insert into Materias values ('Desarrollo de Aplicaciones');
+insert into Materias values ('Base de Datos');
+insert into Materias values ('Estructura de Datos');
+insert into Materias values ('Desarrollo de aplicaciones Web');
+select*from Materias;
+
+
+
+
+create table Profesor(
+IdProfesor int primary key identity,
+Nombre_P varchar (30),
+Apellido_P varchar (30),
+Apellido_M VarChar (30),
+Matricula varchar(100) unique,
+unique(Nombre_P,Apellido_P,Apellido_M,Matricula)
+);
+
+CREATE PROCEDURE usp_Listar_Registro
+AS
+SELECT IdProfesor, Nombre_P, Apellido_P, Apellido_M, Matricula
+FROM Profesor
+
+ --bien
+
+create table Alumno(
+id_alumno int primary key identity,
+nombre varchar(100)not null,
+apellidoP varchar (100) not null,
+apellidoM varchar (100) not null,
+Matricula varchar (100) not null,
+IdGrupo int not null,
+foreign key (IdGrupo)references Grupo (IdGrupo),
+unique(Matricula)
+);
+select nombre,Matricula from Alumno
+ select*from Alumno
+ insert into Alumno values('Kierna','Shipka','Shipka','ship001553',1);
+  insert into Alumno values('Kiernda','Shdipka','Shidpka','ship001d553',1);
+CREATE PROCEDURE usp_Listar_Registrolum
+AS
+SELECT id_alumno, nombre, apellidoP, apellidoM, Matricula
+FROM Alumno
+--bien
+
+create table Horario(
+IdHorario int primary key identity,
+Hora_Entrada_Salida varchar (50),
+AMoPM varchar (20), 
+Unique(Hora_Entrada_Salida,AMoPM),
+constraint chekAMoPM check(AMoPM='AM' or AMoPM='PM' )
+);
+
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('7:00 - 8:00','AM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('8:00 - 9:00','AM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('9:00 - 10:00','AM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('10:00 - 11:00','AM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('11:00 - 12:00','AM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('12:00 - 13:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('13:00 - 14:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('14:00 - 15:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('15:00 - 16:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('16:00 - 17:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('17:00 - 18:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('18:00 - 19:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('19:00 - 20:00','PM');
+INSERT INTO Horario(Hora_Entrada_Salida,AMoPM) VALUES('20:00 - 21:00','PM');
+select*from Horario;
+
+--bien
+
+--InsertarPrestamoAlumn
+
+create table Solicitar_Labora_Alumno(
+idSolicita int primary key identity,
+id_alumno int not null,
+fecha varchar (100),
+IdHorario int,
+Laboratorio_Solicitado int,
+foreign key (id_alumno)references Alumno (id_alumno),
+unique(id_alumno,fecha,IdHorario),
+foreign key (Laboratorio_Solicitado)references Laboratorios_Edificios (IdLaboratorio),
+foreign key (IdHorario)references Horario (IdHorario)
+);
+--bien
+select*from Asigna
+
+create table Asigna(
+IdAsignaint int primary key identity,
+IdGrupo int,
+IdLaboratorio int,
+IdDia int,
+IdMateria int,
+IdProfesor int,
+IdHorario int,
+foreign key (IdGrupo)references Grupo(IdGrupo) on delete cascade,
+foreign key (IdLaboratorio)references Laboratorios_Edificios(IdLaboratorio) on delete cascade,
+foreign key (IdDia)references Dias(IdDia) on delete cascade,
+foreign key (IdMateria)references Materias(IdMateria) on delete cascade,
+foreign key(IdProfesor)references Profesor(Idprofesor) on delete cascade,
+foreign key (IdHorario)references Horario(IdHorario) on delete cascade,
+unique(Idgrupo,Idlaboratorio,Idprofesor,IdHorario,IdDia),
+unique(Idgrupo,Idprofesor,IdHorario,IdDia),
+);
+
+select*from Materia
+--bien
+
+create table Asistencias_Laboratorios(
+idasistencia int primary key identity,
+IdAsignaint int,
+fecha varchar (50),
+asistencias int,
+foreign key (IdAsignaint)references Asigna (IdAsignaint)
+);
+
+--bien
+
+select*from Asigna
+
+
+
+
+/****************************************************************************************/
+select*from Asigna
+
+select*from Laboratorios_Edificios
+create procedure ConsultarHorario
+as
+select grup.Grupo as Grupo,labo_e.Aula as Aula,labo_e.Edificio as Edificio , dias.Dia as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+go
+exec ConsultarHorario
+drop proc ConsultarHorario
+------------------------------------------------------------------------------------------------------------------
+--select grup.Nombregrup as Grupo,labo_e.NombreLab as Aula,labo_e.Edificio as Edificio , dias.Descripcion as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+--from Asigna asig
+--JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+--JOIN Laboratorio_E labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+--JOIN Dia dias ON dias.IdDia = asig.IdDia
+--JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+--JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+--JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+--where dias.Descripcion = 'lunes'
+
+-----------------------------------------------------------------------------------------------------------------
+--select grup.Nombregrup as Grupo,labo_e.NombreLab as Aula,labo_e.Edificio as Edificio , dias.Descripcion as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+--from Asigna asig
+--JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+--JOIN Laboratorio_E labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+--JOIN Dia dias ON dias.IdDia = asig.IdDia
+--JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+--JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+--JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+--where profe.Nombre_P = 'Jose' and profe.Apellido_P = 'Alvaro'
+-------------------------------------------------------------------------------------------------------------------
+--select grup.Nombregrup as Grupo, grup.Turno, labo_e.NombreLab as Aula,labo_e.Edificio as Edificio , dias.Descripcion as Dia, mate.Descripcion as Materia, horas.Hora_Entrada_Salida as Horario
+--from Asigna asig
+--JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+--JOIN Laboratorio_E labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+--JOIN Dia dias ON dias.IdDia = asig.IdDia
+--JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+--JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+--where labo_e.Edificio = 'D-5' and (cuatri.descripcion = 'Primero' and grup.Nombregrup = 'C')
+
+-------------------------------------------------------------------------------------------------------------------
+create proc ConsultarProfesores
+as
+select distinct profe.Nombre_P as Docente,profe.Apellido_P as Apellido_Paterno, profe.Apellido_M as Apellido_Materno, grup.Grupo as Grupo, grup.Turno
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+go
+exec ConsultarProfesores
+drop proc ConsultarProfesores
+
+--correcto
+-----------------------------------------------------------------------------------------------------------------
+--SELECT grup.Nombregrup, grup.especialidad,labo_e.NombreLab,labo_e.Edificio,dias.Descripcion,mate.Descripcion,profe.Nombre_P,profe.Apellido_P, horas.Hora_Entrada_Salida
+--FROM Asigna asig
+--JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+--JOIN Laboratorio_E labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+--JOIN Dia dias ON dias.IdDia = asig.IdDia
+--JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+--JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+--JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+---------------------------------------------------------------------------------------------------------------------
+--SELECT distinct dias.Descripcion as Dia, horas.Hora_Entrada_Salida as Horario, mate.Descripcion as Materia, cuatri.descripcion as Grado, grup.Nombregrup as Grupo,
+--labo_e.NombreLab, labo_e.Edificio
+--FROM Asigna asig
+--JOIN cuatrimestre cuatri ON cuatri.IdCuatrimestre = asig.IdDia
+--JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+--JOIN Laboratorio_E labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+--JOIN Dia dias ON dias.IdDia = asig.IdDia
+--JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+--JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+--where labo_e.NombreLab = '203' and labo_e.Edificio = 'D-5'
+--------------------------------------------------------------------------------------------------
+SELECT grup.Grupo as Grupo, grup.especialidad,labo_e.NombreLab as a,labo_e.Edificio,dias.Descripcion,mate.Descripcion,profe.Nombre_P,profe.Apellido_P, horas.Hora_Entrada_Salida
+FROM Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorio_Edificio labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materia mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+-------------------------------------------------------------------------------------------------------------------------
+select distinct cuatri.descripcion as Grado, grup.Nombregrup as Grupo, grup.Turno, grup.especialidad as Especialidad
+from Grupo grup
+JOIN cuatrimestre cuatri ON cuatri.IdCuatrimestre = grup.IdCuatrimestre
+--------------------------------------------------------------------------------------------------------------------------------
+select distinct soliciLab.nombre as Nombre_Alumno, soliciLab.apellidoP as Apellido_Paterno, soliciLab.apellidoM as Apellido_Materno,
+soliciLab.Matricula, cuatri.descripcion as Grado, grup.Nombregrup as Grupo, labo_e.NombreLab as Aula, labo_e.Edificio
+from Solicitar_Labora_Alumno soliciLab
+join Laboratorio_E labo_e on labo_e.IdLaboratorio = soliciLab.Laboratorio_Solicitado
+JOIN Grupo grup ON grup.IdGrupo = soliciLab.IdGrupo
+join cuatrimestre cuatri on cuatri.IdCuatrimestre = grup.IdCuatrimestre
+--------------------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------------------
+create proc ConsultaHorarioProf
+@IdProf int
+as
+select asig.IdAsignaint as ID, grup.Grupo as Grupo,labo_e.Aula as Aula,labo_e.Edificio as Edificio , dias.Dia as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where profe.IdProfesor=@IdProf
+go
+exec ConsultaHorarioProf 2
+drop proc ConsultaHorarioProf
+------------------------------------------------------------------------------------------------------------
+select*from Laboratorios_Edificios
+select*from Asigna
+create proc ConsultaHorarioProfDia
+@IdProf int,
+@dia varchar(50)
+as
+select asig.IdAsignaint as ID, grup.Grupo as Grupo,labo_e.Aula as Aula,labo_e.Edificio as Edificio , dias.Dia as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where profe.IdProfesor=@IdProf and dias.Dia=@dia
+go
+exec ConsultaHorarioProfDia 2,'Miercoles'
+drop proc ConsultaHorarioProfDia
+----------------------------------------------------------------------------------------------------------------------------------
+create proc ConsultaHorarioLab
+@IdLab int
+as
+select grup.Grupo as Grupo,labo_e.Aula as Aula,labo_e.Edificio as Edificio , dias.Dia as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where labo_e.IdLaboratorio=@IdLab
+go
+exec ConsultaHorarioLab 4
+drop proc ConsultaHorarioLab
+-----------------------------------------------------------------------------------------------------------------------------------
+create proc ConsultaLaboratoriosDisponibles
+@IdDia int,
+@IdHorario int
+as
+select distinct grup.Grupo as Grupo,labo_e.Aula as Aula,labo_e.Edificio as Edificio , dias.Dia as Dia, mate.Descripcion as Materia, profe.Nombre_P as Docente,profe.Apellido_P, horas.Hora_Entrada_Salida as Horario
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where dias.IdDia=@IdDia and horas.IdHorario!=@IdHorario
+go
+exec ConsultaLaboratoriosDisponibles 1,1
+
+drop proc ConsultaLaboratoriosDisponibles
+---------------------------------------------------------------------------------------------------------------------------------------
+create proc ConsultaMateriasPorProfe
+@IdProf int
+as
+select distinct mate.IdMateria,mate.Descripcion
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where profe.IdProfesor=@IdProf
+go
+ConsultaMateriasPorProfe 2
+drop proc ConsultaMateriasPorProfe
+------------------------------------------------------------------------------------------------------------------------------------------------------
+create proc ConsultaGruposPorProfe
+@IdProf int
+as
+select distinct grup.IdGrupo,grup.Grupo
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where profe.IdProfesor=@IdProf
+go
+ConsultaGruposPorProfe 1
+drop proc ConsultaGruposPorProfe
+--------------------------------------------------------------------------------------------------
+create proc ConsultaLaboratoriosProf
+@Dia varchar(50),
+@IdHorario int,
+@IdProf int
+as
+select distinct labo_e.IdLaboratorio,labo_e.Aula
+from Asigna asig
+JOIN Grupo grup ON grup.IdGrupo = asig.IdGrupo
+JOIN Laboratorios_Edificios labo_e ON labo_e.IdLaboratorio = asig.IdLaboratorio
+JOIN Dias dias ON dias.IdDia = asig.IdDia
+JOIN Materias mate ON mate.IdMateria = asig.IdMateria
+JOIN Profesor profe ON profe.IdProfesor = asig.IdProfesor
+JOIN Horario horas ON horas.IdHorario = asig.IdHorario
+where dias.Dia=@Dia and horas.IdHorario=@IdHorario and profe.IdProfesor=@IdProf
+go
+ConsultaLaboratoriosProf 'Miercoles',3,1
+drop proc ConsultaLaboratoriosProf
+----------------------------------------------------------------------------------------------------------
+select*from Alumno
+create proc ConsultarAlumnos
+as
+select alum.id_alumno as ID, alum.Matricula as Matricula, alum.nombre as Nombre, alum.apellidoP as 'Apellido Paterno', alum.apellidoM as 'Apellido Materno', 
+grup.Grupo as Grupo
+from Alumno alum
+join Grupo grup on grup.IdGrupo=alum.IdGrupo
+go
+ConsultarAlumnos
+drop proc ConsultarAlumnos
+--------------------------------------(UTIL)--------------------------------------------------------------------
+create proc LaboratoriosDisponibles
+@IdDia int,
+@IdHorario int
+as
+select IdLaboratorio as 'ID',Aula as 'Laboratorio' from Laboratorios_Edificios
+where IdLaboratorio NOT IN
+(select labo.IdLaboratorio from
+Asistencias_Laboratorios asis
+join Asigna asig on asig.IdAsignaint=asis.IdAsignaint
+join Dias daay on daay.IdDia=asig.IdDia
+join Horario hor on hor.IdHorario=asig.IdHorario
+join Laboratorios_Edificios labo on labo.IdLaboratorio=asig.IdLaboratorio
+where daay.IdDia=@IdDia and hor.IdHorario=@IdHorario)
+go
+LaboratoriosDisponibles 2,5
+drop proc LaboratoriosDisponibles
+select * from Laboratorio_E
+-----------------------------------------------------------------------------------------------------------
+create proc ConsultarAsistencias
+as
+select asis.idasistencia as ID,prof.Nombre_P as Profesor,prof.Apellido_P as 'Apellido  paterno',mat.Descripcion as Materia,daay.Dia as Dia,
+grup.Grupo as Grupo,asis.asistencias as Asistencias,labo.Aula as Laboratorio, hor.Hora_Entrada_Salida as Horario,asis.fecha as Fecha from
+Asistencias_Laboratorios asis
+join Asigna asig on asig.IdAsignaint=asis.IdAsignaint
+join Profesor prof on prof.IdProfesor=asig.IdProfesor
+join Materias mat on mat.IdMateria=asig.IdMateria
+join Dias daay on daay.IdDia=asig.IdDia
+join Grupo grup on grup.IdGrupo=asig.IdGrupo
+join Horario hor on hor.IdHorario=asig.IdHorario
+join Laboratorios_Edificios labo on labo.IdLaboratorio=asig.IdLaboratorio
+go
+ConsultarAsistencias
+drop proc ConsultarAsistencias
+---------------------------------------------------------------------------------------------------------------
+create proc LabosDisponibles
+@hora int,
+@dia varchar (50)
+as
+select labo.IdLaboratorio as ID,labo.Aula as Laboratorio from
+Laboratorios_Edificios labo
+join Asigna asig on asig.IdAsignaint=labo.IdLaboratorio
+join Profesor prof on prof.IdProfesor=asig.IdProfesor
+join Materias mat on mat.IdMateria=asig.IdMateria
+join Dias daay on daay.IdDia=asig.IdDia
+join Grupo grup on grup.IdGrupo=asig.IdGrupo
+join Horario hor on hor.IdHorario=asig.IdHorario
+where hor.IdHorario!=@hora and daay.Dia!=@dia
+go
+LabosDisponibles 5,'Miercoles'
+drop proc LabosDisponibles
+----------------------------------------------------------------------------------------------------------------
+create proc MayorPrestamoFecha
+@inicial varchar(50),
+@final varchar(50)
+as
+select alum.id_alumno as 'ID Alumno',COUNT(alum.id_alumno) as ' prestamos',alum.Matricula,alum.nombre as 'Nombre',alum.apellidoP as 'Apellido'
+from Solicitar_Labora_Alumno soli
+join Alumno alum on alum.id_alumno=soli.id_alumno
+where fecha BETWEEN @inicial AND @final
+group by alum.id_alumno,alum.Matricula,alum.nombre,alum.apellidoP
+order by 2 desc
+go
+MayorPrestamoFecha '03/04/2019','03/04/2019'
+drop proc MayorPrestamoFecha
+
+
+
+
+-----------------------------------------------------
+
+create proc MayorPrestamoFechass
+
+as
+select alum.id_alumno as 'ID Alumno',COUNT(alum.id_alumno) as ' prestamos',alum.Matricula,alum.nombre as 'Nombre',alum.apellidoP as 'Apellido'
+from Solicitar_Labora_Alumno soli
+join Alumno alum on alum.id_alumno=soli.id_alumno
+group by alum.id_alumno,alum.Matricula,alum.nombre,alum.apellidoP
+order by 2 desc
+go
+
+MayorPrestamoFechass
+------------------------------------------------------------------------------------------------------------------
+create proc ConsultarAsistenciasGrupos
+@inicial varchar(50),
+@final varchar(50)
+as
+select grup.IdGrupo as 'ID Grupo' ,COUNT(grup.IdGrupo) as 'Asistencias del grupo',grup.Grupo as Grupo,grup.Turno,grup.especialidad
+from Asistencias_Laboratorios asis
+join Asigna asig on asig.IdAsignaint=asis.IdAsignaint
+join Profesor prof on prof.IdProfesor=asig.IdProfesor
+join Materias mat on mat.IdMateria=asig.IdMateria
+join Dias daay on daay.IdDia=asig.IdDia
+join Grupo grup on grup.IdGrupo=asig.IdGrupo
+join Horario hor on hor.IdHorario=asig.IdHorario
+join Laboratorios_Edificios labo on labo.IdLaboratorio=asig.IdLaboratorio
+where asis.fecha BETWEEN @inicial AND @final
+group by grup.IdGrupo,grup.Grupo,grup.Turno,grup.especialidad
+order by 2 desc
+go
+ConsultarAsistenciasGrupos '02/03/2019','02/03/2019'
+drop proc ConsultarAsistenciasGrupos
+
+
+------------------------------------------------------------------------------------------------------------
+
+create proc ConsultarAsistenciasGruposss
+@inicial varchar(50)
+as
+select grup.IdGrupo as 'ID Grupo' ,COUNT(grup.IdGrupo) as 'Asistencias del grupo',grup.Grupo as Grupo,grup.Turno,grup.especialidad
+from Asistencias_Laboratorios asis
+join Asigna asig on asig.IdAsignaint=asis.IdAsignaint
+join Profesor prof on prof.IdProfesor=asig.IdProfesor
+join Materias mat on mat.IdMateria=asig.IdMateria
+join Dias daay on daay.IdDia=asig.IdDia
+join Grupo grup on grup.IdGrupo=asig.IdGrupo
+join Horario hor on hor.IdHorario=asig.IdHorario
+join Laboratorios_Edificios labo on labo.IdLaboratorio=asig.IdLaboratorio
+where asis.fecha = @inicial
+group by grup.IdGrupo,grup.Grupo,grup.Turno,grup.especialidad
+order by 2 desc
+go
+ConsultarAsistenciasGruposss '02/03/2019'
+
+
+-------------------------------------------------------------------------------------------------------------
+create proc ConsultaAsistenciaFecha
+@fecha varchar (50)
+as
+select asis.idasistencia as ID,prof.Nombre_P as Profesor,prof.Apellido_P as 'Apellido  paterno',mat.Descripcion as Materia,daay.Dia as Dia,
+grup.Grupo as Grupo,asis.asistencias as Asistencias,labo.Aula as Laboratorio, hor.Hora_Entrada_Salida as Horario,asis.fecha as Fecha from
+Asistencias_Laboratorios asis
+join Asigna asig on asig.IdAsignaint=asis.IdAsignaint
+join Profesor prof on prof.IdProfesor=asig.IdProfesor
+join Materias mat on mat.IdMateria=asig.IdMateria
+join Dias daay on daay.IdDia=asig.IdDia
+join Grupo grup on grup.IdGrupo=asig.IdGrupo
+join Horario hor on hor.IdHorario=asig.IdHorario
+join Laboratorios_Edificios labo on labo.IdLaboratorio=asig.IdLaboratorio
+where asis.fecha=@fecha
+go
+ConsultaAsistenciaFecha '03/04/2019'
+drop proc ConsultaAsistenciaFecha
+
+

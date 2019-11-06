@@ -1,0 +1,9 @@
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\bin\Debug\ModeloSql.dll
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\bin\Debug\ModeloSql.pdb
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\bin\Debug\Conexionsql.dll
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\bin\Debug\Conexionsql.pdb
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\obj\Debug\ModeloSql.csprojAssemblyReference.cache
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\obj\Debug\ModeloSql.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\obj\Debug\ModeloSql.csproj.CopyComplete
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\obj\Debug\ModeloSql.dll
+C:\Users\user\source\repos\Laboratoriosasp\ModeloSql\obj\Debug\ModeloSql.pdb
